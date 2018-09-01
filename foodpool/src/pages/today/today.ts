@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 import { ItemDetailsPage } from '../item-details/item-details';
+import { CreatePollPage } from '../create-poll/create-poll';
 
 @Component({
   selector: 'today',
@@ -24,6 +25,10 @@ export class TodayPage {
         icon: this.icons[Math.floor(Math.random() * this.icons.length)]
       });
     }
+  }
+
+  CreateNewPoll(){
+    this.navCtrl.push(CreatePollPage);
   }
 
   itemTapped(event, item) {

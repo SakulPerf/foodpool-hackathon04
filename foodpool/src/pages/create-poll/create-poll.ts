@@ -1,25 +1,48 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-/**
- * Generated class for the CreatePollPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { NavController, NavParams, PopoverController, ViewController } from 'ionic-angular';
 
-@IonicPage()
+import { ItemDetailsPage } from '../item-details/item-details';
+import { ShopDetailPage } from '../shop-detail/shop-detail';
+import { HttpClient } from '@angular/common/http';
+import { ShopInfo, Configuration } from '../../models/models';
+
 @Component({
-  selector: 'page-create-poll',
-  templateUrl: 'create-poll.html',
+  selector: 'create-poll',
+  templateUrl: 'create-poll.html'
 })
 export class CreatePollPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  selectedShopId: string;
+  name: string;
+  detail: string;
+  shops: ShopInfo[];
+
+  constructor(private http: HttpClient, public viewCtrl: ViewController,public navCtrl: NavController, public navParams: NavParams) {
+    this.http.get<ShopInfo[]>('https://foodpoll.azurewebsites.net/api/Foodpoll/ListShop/' + Configuration.currentUsername).subscribe(result => {
+      this.shops = result;
+    }, error => console.error(error));
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CreatePollPage');
+  createNewPoll(){
+    console.log(this.selectedShopId);
+    /*
+    this.http.post('https://foodpoll.azurewebsites.net/api/Foodpoll/CreateShop',
+    { 
+      "name": this.name,
+      "detail": this.detail,
+    }).subscribe(result => {
+      
+      var response = result as any;
+      this.viewCtrl.dismiss();
+      this.navCtrl.push(ShopDetailPage, { shopId: response._id});
+    }, error => console.error(error));
+    */
   }
 
+  itemTapped(event, item) {
+    this.navCtrl.push(ItemDetailsPage, {
+      item: item
+    });
+  }
 }

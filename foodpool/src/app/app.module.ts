@@ -38,6 +38,7 @@ import { HttpClientModule } from '@angular/common/http';
   entryComponents: [
     MyApp,
     HelloIonicPage,
+    CreatePollPage,
     ItemDetailsPage,
     ListPage,
     TodayPage,

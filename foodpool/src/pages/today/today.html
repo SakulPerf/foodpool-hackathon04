@@ -8,6 +8,7 @@
 </ion-header>
 
 <ion-content>
+    <button ion-button color="primary" (click)="CreateNewPoll()">สร้างรายการวันนี้</button>
   <ion-list>
     <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
       <ion-icon name="{{item.icon}}" item-left></ion-icon>

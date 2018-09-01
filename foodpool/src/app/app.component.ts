@@ -11,6 +11,7 @@ import { ShopPage } from '../pages/shop/shop';
 import { TodayPage } from '../pages/today/today';
 import { UserPage } from '../pages/user/user';
 import { SignoutPage } from '../pages/signout/signout';
+import { ClosePollPage } from '../pages/closepoll/closepoll';
 
 
 @Component({
@@ -36,6 +37,7 @@ export class MyApp {
       { title: 'Home', component: TodayPage },
       { title: 'Shop', component: ShopPage },
       { title: 'Users', component: UserPage },
+      { title: 'Closed', component: ClosePollPage },
       { title: 'Signout', component: SignoutPage }
     ];
   }

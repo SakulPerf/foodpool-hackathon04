@@ -18,6 +18,7 @@ import { CreateShopPage } from '../pages/create-shop/create-shop';
 import { HttpClientModule } from '@angular/common/http';
 import { UserPage } from '../pages/user/user';
 import { SignoutPage } from '../pages/signout/signout';
+import { ClosePollPage } from '../pages/closepoll/closepoll';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { SignoutPage } from '../pages/signout/signout';
     ShopDetailPage,
     CreateShopPage,
     UserPage,
-    SignoutPage
+    SignoutPage,
+    ClosePollPage
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,8 @@ import { SignoutPage } from '../pages/signout/signout';
     ShopDetailPage,
     CreateShopPage,
     UserPage,
-    SignoutPage
+    SignoutPage,
+    ClosePollPage
   ],
   providers: [
     StatusBar,

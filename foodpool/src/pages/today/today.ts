@@ -47,7 +47,7 @@ export class TodayPage {
   }
 
   ClosePoll(poll: PollInfo) {
-    this.http.get('https://foodpoll.azurewebsites.net/api/Foodpoll/ClosePoll/' + poll._id + '/' + Configuration.currentUsername).subscribe(result => {
+    this.http.get('https://foodpoll.azurewebsites.net/api/Foodpoll/ClosePoll/' + poll._id).subscribe(result => {
       const index: number = this.polls.indexOf(poll);
       if (index !== -1) {
         this.polls.splice(index, 1);

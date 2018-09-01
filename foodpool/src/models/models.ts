@@ -4,6 +4,7 @@ export class PollInfo {
     public defaultMenu: ShopMenu;
     public myDefaultMenu: ShopMenu;
     public myOrder: ShopMenu;
+    public createDate: string;
 }
 
 export class ShopInfo {

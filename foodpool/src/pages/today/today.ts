@@ -6,6 +6,7 @@ import { ItemDetailsPage } from '../item-details/item-details';
 import { CreatePollPage } from '../create-poll/create-poll';
 import { HttpClient } from '@angular/common/http';
 import { PollInfo, Configuration } from '../../models/models';
+import { ShopDetailPage } from '../shop-detail/shop-detail';
 
 @Component({
   selector: 'today',
@@ -29,8 +30,8 @@ export class TodayPage {
     popover.present();
   }
 
-  SelectedPoll(pollId: string){
-    console.log("SELECTED POLL");
+  SelectedPoll(shopId: string){
+    this.navCtrl.push(ShopDetailPage, { shopId: shopId });
   }
 
   ClosePoll(pollId: string){

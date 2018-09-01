@@ -1,0 +1,7 @@
+{
+  "name": "foodpool",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

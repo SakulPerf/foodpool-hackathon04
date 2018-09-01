@@ -1,6 +1,9 @@
 export class PollInfo {
     public _id: string;
     public shop: ShopInfo;
+    public defaultMenu: ShopMenu;
+    public myDefaultMenu: ShopMenu;
+    public myOrder: ShopMenu;
 }
 
 export class ShopInfo {

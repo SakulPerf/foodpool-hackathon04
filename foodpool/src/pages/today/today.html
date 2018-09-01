@@ -22,9 +22,9 @@
             <ion-col col-6>ร้านวันนี้:</ion-col>
             <ion-col col-6 text-right>{{item.shop.name}}</ion-col>
             <ion-col col-6>คุณเลือก</ion-col>
-            <ion-col col-6 text-right>ข้าวมันเป็ด</ion-col>
-            <ion-col col-6>ไม่มี/ไม่มา คุณเลือก</ion-col>
-            <ion-col col-6 text-right>ข้าวมันไก่</ion-col>
+            <ion-col col-6 text-right>{{ GetYourOrderName(item) }}</ion-col>
+            <ion-col col-6>กรณี ไม่มี-ไม่ได้เลือก</ion-col>
+            <ion-col col-6 text-right>{{ item.defaultMenu.name }}</ion-col>
           </ion-row>
         </ion-item>
         <button ion-button color="primary" (click)="SelectedPoll(item.shop._id)" style="background-color:#F97306;">สั่งข้าว</button>

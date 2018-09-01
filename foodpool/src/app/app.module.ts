@@ -16,6 +16,7 @@ import { ShopPage } from '../pages/shop/shop';
 import { ShopDetailPage } from '../pages/shop-detail/shop-detail';
 import { CreateShopPage } from '../pages/create-shop/create-shop';
 import { HttpClientModule } from '@angular/common/http';
+import { UserPage } from '../pages/user/user';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
     TodayPage,
     ShopPage,
     ShopDetailPage,
-    CreateShopPage
+    CreateShopPage,
+    UserPage
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,8 @@ import { HttpClientModule } from '@angular/common/http';
     TodayPage,
     ShopPage,
     ShopDetailPage,
-    CreateShopPage
+    CreateShopPage,
+    UserPage
   ],
   providers: [
     StatusBar,

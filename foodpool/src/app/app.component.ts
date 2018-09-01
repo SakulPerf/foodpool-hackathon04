@@ -9,6 +9,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ShopPage } from '../pages/shop/shop';
 import { TodayPage } from '../pages/today/today';
+import { UserPage } from '../pages/user/user';
 
 
 @Component({
@@ -32,7 +33,8 @@ export class MyApp {
     // set our app's pages
     this.pages = [
       { title: 'Home', component: TodayPage },
-      { title: 'Shop', component: ShopPage }
+      { title: 'Shop', component: ShopPage },
+      { title: 'Users', component: UserPage }
     ];
   }
 

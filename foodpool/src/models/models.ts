@@ -18,3 +18,8 @@ export class ShopMenu{
 export class Configuration{
     public static currentUsername: string;
 }
+
+export class UserInfo{
+    public _id: string;
+    public name: string;
+}

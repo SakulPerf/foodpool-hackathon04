@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Users</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-card>
+      <ion-card-header>
+        เพิ่มผู้ใช้ใหม่
+      </ion-card-header>
+      <ion-card-content>
+          <ion-item>
+            <ion-label fixed>ชื่อผู้ใช้</ion-label>
+            <ion-input type="text" [(ngModel)]="newUsername"></ion-input>
+          </ion-item>
+          <button ion-button color="primary" (click)="AddNewUser()">เพิ่ม</button>
+      </ion-card-content>
+    </ion-card>
+  <ion-list>
+    <button ion-item *ngFor="let item of user">
+      <ion-icon name="{{item.icon}}" item-left></ion-icon>
+      {{item.name}}
+      <div class="item-note" item-right (click)="DeleteUser(item)">
+        ลบ
+      </div>
+    </button>
+  </ion-list>
+</ion-content>

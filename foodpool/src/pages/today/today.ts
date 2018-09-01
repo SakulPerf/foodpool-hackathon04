@@ -33,7 +33,7 @@ export class TodayPage {
     }
     else ordername = item.myOrder.name;
 
-    if(ordername==null) ordername = "ไม่ได้เลือก";
+    if (ordername == null) ordername = "ไม่ได้เลือก";
     return ordername;
   }
 
@@ -46,8 +46,13 @@ export class TodayPage {
     this.navCtrl.push(ShopDetailPage, { shopId: shopId, pollInfo: pollInfo });
   }
 
-  ClosePoll(pollId: string) {
-    console.log("CLOSE POLL");
+  ClosePoll(poll: PollInfo) {
+    this.http.get('https://foodpoll.azurewebsites.net/api/Foodpoll/ClosePoll/' + poll._id + '/' + Configuration.currentUsername).subscribe(result => {
+      const index: number = this.polls.indexOf(poll);
+      if (index !== -1) {
+        this.polls.splice(index, 1);
+      }
+    }, error => console.error(error));
   }
 
   DeletePoll(poll: PollInfo) {

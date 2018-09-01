@@ -44,8 +44,9 @@ export class ShopDetailPage {
     }
 
     if(this.pollInfo!=null){
+      console.log("XXXXX: "+this.pollInfo.myDefaultMenu._id)
       for (let entry of this.shopInfo.menus) {
-        if (this.shopInfo.defaultMenu._id == entry._id) {
+        if (this.pollInfo.myDefaultMenu._id == entry._id) {
           entry.selecteddefault = true;
         }
       }

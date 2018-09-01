@@ -3,13 +3,12 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Shop detail 123</ion-title>
+    <ion-title>Shop detail</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
 
-  Hello
   <ion-card *ngIf="shopInfo">
     <ion-card-header>
       ข้อมูลร้าน
@@ -22,30 +21,35 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-icon name="{{item.icon}}" item-left></ion-icon>
-      {{item.title}}
-      <div class="item-note" item-right>
-        {{item.note}}
-      </div>
-    </button>
-  </ion-list>
+  <ion-card *ngIf="shopInfo">
+    <ion-card-header>
+      รายการอาหาร
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list *ngIf="shopInfo">
+        <button ion-item *ngFor="let item of shopInfo.menus" (click)="itemTapped($event, item)">
+          <ion-icon name="{{item.icon}}" item-left></ion-icon>
+          {{item.name}}
+          <div class="item-note" item-right>
+            XXX
+          </div>
+        </button>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 
   <ion-card>
     <ion-card-header>
-      เพิ่มรายการ
+      เพิ่มเมนูใหม่
     </ion-card-header>
     <ion-card-content>
         <ion-item>
-          <ion-label fixed>ชื่อรายการอาหาร</ion-label>
+          <ion-label fixed>ชื่อเมนู</ion-label>
           <ion-input type="text" [(ngModel)]="newMenuName"></ion-input>
         </ion-item>
         <button ion-button color="primary" (click)="AddNewMenu()">เพิ่ม</button>
     </ion-card-content>
   </ion-card>
-
-  <button ion-button color="primary" (click)="SaveChanged()">แก้ไข</button>
   <button ion-button color="primary" (click)="DeleteShop()">ลบร้าน</button>
 
 </ion-content>

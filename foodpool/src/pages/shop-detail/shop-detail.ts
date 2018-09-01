@@ -4,7 +4,7 @@ import { NavController, NavParams } from 'ionic-angular';
 
 import { ItemDetailsPage } from '../item-details/item-details';
 import { HttpClient } from '@angular/common/http';
-import { ShopInfo } from '../../models/models';
+import { ShopInfo, Configuration } from '../../models/models';
 
 @Component({
   selector: 'shop-detail',
@@ -12,39 +12,32 @@ import { ShopInfo } from '../../models/models';
 })
 export class ShopDetailPage {
 
+  shopId: string;
+  newMenuName: string;
   shopInfo: ShopInfo = new ShopInfo();
 
-  icons: string[];
-  items: Array<{title: string, note: string, icon: string}>;
-
   constructor(private http: HttpClient, public navCtrl: NavController, public navParams: NavParams) {
-    var shopId = navParams.get('shopId');
+    this.shopId = navParams.get('shopId');
 
-    this.http.get<ShopInfo>('https://foodpoll.azurewebsites.net/api/Foodpoll/GetShop/'+shopId+'/AU').subscribe(result => {
+    this.http.get<ShopInfo>('https://foodpoll.azurewebsites.net/api/Foodpoll/GetShop/' + this.shopId + '/' + Configuration.currentUsername).subscribe(result => {
       this.shopInfo = result;
     }, error => console.error(error));
-
-    this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-    'american-football', 'boat', 'bluetooth', 'build'];
-
-    this.items = [];
-    for(let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'MyItem ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-    }
   }
 
-  AddNewMenu(){
+  AddNewMenu() {
+    this.http.post('https://foodpoll.azurewebsites.net/api/Foodpoll/AddMenu/' + Configuration.currentUsername, {
+      "shopId": this.shopId,
+      "menu": {
+        "name": this.newMenuName
+      }
+    }).subscribe(result => {
+      var response = result as ShopInfo;
+      console.log(response)
+      this.shopInfo = response;
+    }, error => console.error(error));
   }
 
-  SaveChanged(){
-    console.log("Save changed");
-  }
-
-  DeleteShop(){
+  DeleteShop() {
     console.log("Delete shop");
   }
 

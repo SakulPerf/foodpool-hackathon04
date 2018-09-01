@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { TodayPage } from '../today/today';
+import { Configuration } from '../../models/models';
 
 @Component({
   selector: 'page-hello-ionic',
@@ -9,7 +10,7 @@ import { TodayPage } from '../today/today';
 export class HelloIonicPage {
   
   constructor(public navCtrl: NavController) {
-
+    Configuration.currentUsername = "AU";
   }
 
   login(){

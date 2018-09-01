@@ -9,3 +9,7 @@ export class ShopMenu{
     public _id: string;
     public name: string;
 }
+
+export class Configuration{
+    public static currentUsername: string;
+}

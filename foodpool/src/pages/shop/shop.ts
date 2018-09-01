@@ -4,37 +4,32 @@ import { NavController, NavParams, PopoverController } from 'ionic-angular';
 
 import { ItemDetailsPage } from '../item-details/item-details';
 import { CreateShopPage } from '../create-shop/create-shop';
+import { ShopInfo, Configuration } from '../../models/models';
+import { HttpClient } from '@angular/common/http';
+import { ShopDetailPage } from '../shop-detail/shop-detail';
 
 @Component({
   selector: 'shop',
   templateUrl: 'shop.html'
 })
 export class ShopPage {
-  icons: string[];
-  items: Array<{title: string, note: string, icon: string}>;
 
-  constructor(public popoverCtrl: PopoverController,public navCtrl: NavController, public navParams: NavParams) {
-    this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-    'american-football', 'boat', 'bluetooth', 'build'];
+  shops: ShopInfo[];
 
-    this.items = [];
-    for(let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-    }
+  constructor(private http: HttpClient, public popoverCtrl: PopoverController, public navCtrl: NavController, public navParams: NavParams) {
+    this.http.get<ShopInfo[]>('https://foodpoll.azurewebsites.net/api/Foodpoll/ListShop/' + Configuration.currentUsername).subscribe(result => {
+      this.shops = result;
+    }, error => console.error(error));
   }
 
-  AddNewShop(){
+  AddNewShop() {
     const popover = this.popoverCtrl.create(CreateShopPage);
     popover.present();
   }
 
   itemTapped(event, item) {
-    this.navCtrl.push(ItemDetailsPage, {
-      item: item
+    this.navCtrl.push(ShopDetailPage, {
+      shopId: item._id
     });
   }
 }

@@ -15,6 +15,7 @@ import { TodayPage } from '../pages/today/today'
 import { ShopPage } from '../pages/shop/shop';
 import { ShopDetailPage } from '../pages/shop-detail/shop-detail';
 import { CreateShopPage } from '../pages/create-shop/create-shop';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { CreateShopPage } from '../pages/create-shop/create-shop';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

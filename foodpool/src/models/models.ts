@@ -1,0 +1,11 @@
+export class ShopInfo{
+    public _id: string;
+    public name: string;
+    public detail: string;
+    public menus: ShopMenu[];
+}
+
+export class ShopMenu{
+    public _id: string;
+    public name: string;
+}

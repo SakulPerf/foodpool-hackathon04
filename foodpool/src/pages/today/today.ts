@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, PopoverController } from 'ionic-angular';
 
 import { ItemDetailsPage } from '../item-details/item-details';
 import { CreatePollPage } from '../create-poll/create-poll';
@@ -13,7 +13,7 @@ export class TodayPage {
   icons: string[];
   items: Array<{title: string, note: string, icon: string}>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public popoverCtrl: PopoverController, public navCtrl: NavController, public navParams: NavParams) {
     this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
     'american-football', 'boat', 'bluetooth', 'build'];
 
@@ -28,7 +28,8 @@ export class TodayPage {
   }
 
   CreateNewPoll(){
-    this.navCtrl.push(CreatePollPage);
+    const popover = this.popoverCtrl.create(CreatePollPage);
+    popover.present();
   }
 
   itemTapped(event, item) {

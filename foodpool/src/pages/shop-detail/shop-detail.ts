@@ -4,7 +4,7 @@ import { NavController, NavParams } from 'ionic-angular';
 
 import { ItemDetailsPage } from '../item-details/item-details';
 import { HttpClient } from '@angular/common/http';
-import { ShopInfo, Configuration } from '../../models/models';
+import { ShopInfo, Configuration, ShopMenu } from '../../models/models';
 
 @Component({
   selector: 'shop-detail',
@@ -37,13 +37,20 @@ export class ShopDetailPage {
     }, error => console.error(error));
   }
 
-  DeleteShop() {
-    console.log("Delete shop");
+  deleteMenu(menu: ShopMenu){
+    console.log("DELETE MENU: "+menu._id)
+    this.http.get('https://foodpoll.azurewebsites.net/api/Foodpoll/DeleteMenu/' +this.shopId +'/'+menu._id).subscribe(result => {
+      const index: number = this.shopInfo.menus.indexOf(menu);
+      if (index !== -1) {
+          this.shopInfo.menus.splice(index, 1);
+      }  
+    }, error => console.error(error));
   }
 
-  itemTapped(event, item) {
-    this.navCtrl.push(ItemDetailsPage, {
-      item: item
-    });
+  DeleteShop() {
+    console.log("DELETE SHOP: "+this.shopId)
+    this.http.get('https://foodpoll.azurewebsites.net/api/Foodpoll/DeleteShop/' +this.shopId).subscribe(result => {
+      this.navCtrl.pop();
+    }, error => console.error(error));
   }
 }

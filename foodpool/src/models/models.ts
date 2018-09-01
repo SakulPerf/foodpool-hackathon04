@@ -1,3 +1,8 @@
+export class PollInfo{
+    public _id: string;
+    public shop: ShopInfo;
+}
+
 export class ShopInfo{
     public _id: string;
     public name: string;

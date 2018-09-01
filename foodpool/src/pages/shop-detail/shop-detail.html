@@ -27,11 +27,11 @@
     </ion-card-header>
     <ion-card-content>
       <ion-list *ngIf="shopInfo">
-        <button ion-item *ngFor="let item of shopInfo.menus" (click)="itemTapped($event, item)">
+        <button ion-item *ngFor="let item of shopInfo.menus">
           <ion-icon name="{{item.icon}}" item-left></ion-icon>
           {{item.name}}
-          <div class="item-note" item-right>
-            XXX
+          <div class="item-note" item-right (click)="deleteMenu(item)">
+            ลบ
           </div>
         </button>
       </ion-list>

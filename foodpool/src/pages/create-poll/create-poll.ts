@@ -5,7 +5,7 @@ import { NavController, NavParams, PopoverController, ViewController } from 'ion
 import { ItemDetailsPage } from '../item-details/item-details';
 import { ShopDetailPage } from '../shop-detail/shop-detail';
 import { HttpClient } from '@angular/common/http';
-import { ShopInfo, Configuration } from '../../models/models';
+import { ShopInfo, Configuration, PollInfo } from '../../models/models';
 
 @Component({
   selector: 'create-poll',
@@ -25,19 +25,13 @@ export class CreatePollPage {
   }
 
   createNewPoll(){
-    console.log(this.selectedShopId);
-    /*
-    this.http.post('https://foodpoll.azurewebsites.net/api/Foodpoll/CreateShop',
-    { 
-      "name": this.name,
-      "detail": this.detail,
-    }).subscribe(result => {
-      
-      var response = result as any;
-      this.viewCtrl.dismiss();
-      this.navCtrl.push(ShopDetailPage, { shopId: response._id});
+    this.http.get<PollInfo>('https://foodpoll.azurewebsites.net/api/Foodpoll/CreatePoll/'+this.selectedShopId).subscribe(result => {
+      //this.viewCtrl.dismiss();
+      this.navCtrl.push(ShopDetailPage, { shopId: this.selectedShopId });
     }, error => console.error(error));
-    */
+    
+    //this.viewCtrl.dismiss();
+    //this.navCtrl.push(ShopDetailPage, { shopId: this.selectedShopId });
   }
 
   itemTapped(event, item) {

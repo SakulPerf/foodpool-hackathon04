@@ -10,10 +10,18 @@
 
 <ion-content padding>
 
-  <h3>Login</h3>
 
-  <p>
-    <button ion-button color="primary" (click)="login()">Login</button>
-  </p>
+  <ion-row>
+    <ion-col col-12>
+      <h3 style="text-align: center;">Login</h3>
+      <ion-item>
+        <ion-input type="text" placeholder="Username"></ion-input>
+      </ion-item>
+
+      <button ion-button round (click)="login()" style="width: 100%;">Login</button>
+
+    </ion-col>
+  </ion-row>
+
 
 </ion-content>

@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Create new shop</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+      <ion-item>
+        <ion-label fixed>ชื่อร้าน</ion-label>
+        <ion-input type="text" [(ngModel)]="name"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label fixed>รายละเอียด</ion-label>
+          <ion-input type="text" [(ngModel)]="detail"></ion-input>
+        </ion-item>
+    </ion-list>
+  <button ion-button color="primary" (click)="AddNewShop()">Add new shop</button>
+</ion-content>

@@ -12,6 +12,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TodayPage } from '../pages/today/today'
 import { ShopPage } from '../pages/shop/shop';
+import { ShopDetailPage } from '../pages/shop-detail/shop-detail';
+import { CreateShopPage } from '../pages/create-shop/create-shop';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { ShopPage } from '../pages/shop/shop';
     ItemDetailsPage,
     ListPage,
     TodayPage,
-    ShopPage
+    ShopPage,
+    ShopDetailPage,
+    CreateShopPage
   ],
   imports: [
     BrowserModule,
@@ -33,7 +37,9 @@ import { ShopPage } from '../pages/shop/shop';
     ItemDetailsPage,
     ListPage,
     TodayPage,
-    ShopPage
+    ShopPage,
+    ShopDetailPage,
+    CreateShopPage
   ],
   providers: [
     StatusBar,

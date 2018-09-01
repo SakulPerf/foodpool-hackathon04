@@ -1,19 +1,18 @@
 import { Component } from '@angular/core';
 
-import { NavController, NavParams, PopoverController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 import { ItemDetailsPage } from '../item-details/item-details';
-import { CreateShopPage } from '../create-shop/create-shop';
 
 @Component({
-  selector: 'shop',
-  templateUrl: 'shop.html'
+  selector: 'shop-detail',
+  templateUrl: 'shop-detail.html'
 })
-export class ShopPage {
+export class ShopDetailPage {
   icons: string[];
   items: Array<{title: string, note: string, icon: string}>;
 
-  constructor(public popoverCtrl: PopoverController,public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
     'american-football', 'boat', 'bluetooth', 'build'];
 
@@ -25,11 +24,6 @@ export class ShopPage {
         icon: this.icons[Math.floor(Math.random() * this.icons.length)]
       });
     }
-  }
-
-  AddNewShop(){
-    const popover = this.popoverCtrl.create(CreateShopPage);
-    popover.present();
   }
 
   itemTapped(event, item) {

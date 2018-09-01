@@ -1,25 +1,28 @@
-export class PollInfo{
+export class PollInfo {
     public _id: string;
     public shop: ShopInfo;
 }
 
-export class ShopInfo{
+export class ShopInfo {
     public _id: string;
     public name: string;
     public detail: string;
     public menus: ShopMenu[];
+    public defaultMenu: ShopMenu;
 }
 
-export class ShopMenu{
+export class ShopMenu {
     public _id: string;
     public name: string;
+    public selecteddefault: boolean;
+    public youselect: boolean;
 }
 
-export class Configuration{
+export class Configuration {
     public static currentUsername: string;
 }
 
-export class UserInfo{
+export class UserInfo {
     public _id: string;
     public name: string;
 }

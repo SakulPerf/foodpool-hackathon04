@@ -23,6 +23,13 @@ export class ShopDetailPage {
   ionViewDidEnter() {
     this.http.get<ShopInfo>('https://foodpoll.azurewebsites.net/api/Foodpoll/GetShop/' + this.shopId + '/' + Configuration.currentUsername).subscribe(result => {
       this.shopInfo = result;
+
+      for (let entry of this.shopInfo.menus) {
+          if(this.shopInfo.defaultMenu._id == entry._id){
+            entry.selecteddefault = true;
+          }
+      }
+
     }, error => console.error(error));
   }
 
@@ -39,20 +46,43 @@ export class ShopDetailPage {
     }, error => console.error(error));
   }
 
-  deleteMenu(menu: ShopMenu){
-    console.log("DELETE MENU: "+menu._id)
-    this.http.get('https://foodpoll.azurewebsites.net/api/Foodpoll/DeleteMenu/' +this.shopId +'/'+menu._id).subscribe(result => {
+  deleteMenu(menu: ShopMenu) {
+    console.log("DELETE MENU: " + menu._id)
+    this.http.get('https://foodpoll.azurewebsites.net/api/Foodpoll/DeleteMenu/' + this.shopId + '/' + menu._id).subscribe(result => {
       const index: number = this.shopInfo.menus.indexOf(menu);
       if (index !== -1) {
-          this.shopInfo.menus.splice(index, 1);
-      }  
+        this.shopInfo.menus.splice(index, 1);
+      }
     }, error => console.error(error));
   }
 
   DeleteShop() {
-    console.log("DELETE SHOP: "+this.shopId)
-    this.http.get('https://foodpoll.azurewebsites.net/api/Foodpoll/DeleteShop/' +this.shopId).subscribe(result => {
+    console.log("DELETE SHOP: " + this.shopId)
+    this.http.get('https://foodpoll.azurewebsites.net/api/Foodpoll/DeleteShop/' + this.shopId).subscribe(result => {
       this.navCtrl.pop();
+    }, error => console.error(error));
+  }
+
+
+  changeDefault(item: ShopMenu) {
+    for (let entry of this.shopInfo.menus) {
+        if(item != entry){
+          entry.selecteddefault = false;
+        }
+    }
+
+    this.http.get('https://foodpoll.azurewebsites.net/api/Foodpoll/SetDefaulMenu/' + this.shopId+'/'+item._id).subscribe(result => {
+    }, error => console.error(error));
+  }
+
+  changeYourOrder(item: ShopMenu) {
+    for (let entry of this.shopInfo.menus) {
+      if(item != entry){
+        entry.youselect = false;
+      }
+    }
+
+    this.http.get('https://foodpoll.azurewebsites.net/api/Foodpoll/SetDefaulMenu/' + this.shopId+'/'+item._id+'/'+Configuration.currentUsername).subscribe(result => {
     }, error => console.error(error));
   }
 }

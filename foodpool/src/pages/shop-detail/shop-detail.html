@@ -27,13 +27,21 @@
     </ion-card-header>
     <ion-card-content>
       <ion-list *ngIf="shopInfo">
-        <button ion-item *ngFor="let item of shopInfo.menus">
-          <ion-icon name="{{item.icon}}" item-left></ion-icon>
-          {{item.name}}
-          <div class="item-note" item-right (click)="deleteMenu(item)">
-            ลบ
-          </div>
-        </button>
+
+          <ion-grid>
+            <ion-row>
+              <ion-col col-6>ชื่อ</ion-col>
+              <ion-col col-2>default</ion-col>
+              <ion-col col-2>คุณเลือก</ion-col>
+              <ion-col col-2></ion-col>
+            </ion-row>
+            <ion-row *ngFor="let item of shopInfo.menus">
+              <ion-col col-6>{{item.name}}</ion-col>
+              <ion-col col-2><ion-checkbox (click)="changeDefault(item)" [(ngModel)]="item.selecteddefault"></ion-checkbox></ion-col>
+              <ion-col col-2><ion-checkbox (click)="changeYourOrder(item)" [(ngModel)]="item.youselect"></ion-checkbox></ion-col>
+              <ion-col col-2 item-right (click)="deleteMenu(item)">ลบ</ion-col>
+            </ion-row>
+          </ion-grid>
       </ion-list>
     </ion-card-content>
   </ion-card>

@@ -8,12 +8,16 @@ import { Configuration } from '../../models/models';
   templateUrl: 'hello-ionic.html'
 })
 export class HelloIonicPage {
-  
+
+  username: string;
+
   constructor(public navCtrl: NavController) {
     Configuration.currentUsername = "AU";
   }
 
-  login(){
-    this.navCtrl.push(TodayPage);
+  login() {
+    if (this.username != null) {
+      this.navCtrl.setRoot(TodayPage);
+    }
   }
 }

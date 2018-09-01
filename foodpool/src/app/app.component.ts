@@ -10,6 +10,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { ShopPage } from '../pages/shop/shop';
 import { TodayPage } from '../pages/today/today';
 import { UserPage } from '../pages/user/user';
+import { SignoutPage } from '../pages/signout/signout';
 
 
 @Component({
@@ -34,7 +35,8 @@ export class MyApp {
     this.pages = [
       { title: 'Home', component: TodayPage },
       { title: 'Shop', component: ShopPage },
-      { title: 'Users', component: UserPage }
+      { title: 'Users', component: UserPage },
+      { title: 'Signout', component: SignoutPage }
     ];
   }
 

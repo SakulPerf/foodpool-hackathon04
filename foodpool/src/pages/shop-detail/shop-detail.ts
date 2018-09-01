@@ -18,7 +18,9 @@ export class ShopDetailPage {
 
   constructor(private http: HttpClient, public navCtrl: NavController, public navParams: NavParams) {
     this.shopId = navParams.get('shopId');
+  }
 
+  ionViewDidEnter() {
     this.http.get<ShopInfo>('https://foodpoll.azurewebsites.net/api/Foodpoll/GetShop/' + this.shopId + '/' + Configuration.currentUsername).subscribe(result => {
       this.shopInfo = result;
     }, error => console.error(error));

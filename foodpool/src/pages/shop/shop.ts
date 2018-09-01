@@ -17,6 +17,9 @@ export class ShopPage {
   shops: ShopInfo[];
 
   constructor(private http: HttpClient, public popoverCtrl: PopoverController, public navCtrl: NavController, public navParams: NavParams) {
+  }
+
+  ionViewDidEnter() {
     this.http.get<ShopInfo[]>('https://foodpoll.azurewebsites.net/api/Foodpoll/ListShop/' + Configuration.currentUsername).subscribe(result => {
       this.shops = result;
     }, error => console.error(error));

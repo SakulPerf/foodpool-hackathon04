@@ -29,14 +29,5 @@ export class CreatePollPage {
       //this.viewCtrl.dismiss();
       this.navCtrl.push(ShopDetailPage, { shopId: this.selectedShopId });
     }, error => console.error(error));
-    
-    //this.viewCtrl.dismiss();
-    //this.navCtrl.push(ShopDetailPage, { shopId: this.selectedShopId });
-  }
-
-  itemTapped(event, item) {
-    this.navCtrl.push(ItemDetailsPage, {
-      item: item
-    });
   }
 }

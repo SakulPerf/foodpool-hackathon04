@@ -10,12 +10,24 @@
 <ion-content>
     <button ion-button color="primary" (click)="CreateNewPoll()">สร้างรายการวันนี้</button>
   <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-icon name="{{item.icon}}" item-left></ion-icon>
-      {{item.title}}
-      <div class="item-note" item-right>
-        {{item.note}}
-      </div>
-    </button>
+      <ion-card *ngFor="let item of polls">
+          <ion-card-header>
+            ร้านวันนี้: {{item.shop.name}}
+          </ion-card-header>
+          <ion-card-content>
+            รายละเอียดร้าน
+            {{item.shop.detail}}
+            <hr />
+            อาหารที่คุณจะได้: กระเพราหมูสับไข่ดาว
+            <hr />
+            default: ข้าวเปล่า+น้ำปลา
+            <hr />
+            คนที่ไม่กิน: อู เอิน เอก เอ้
+            <hr />
+            <button ion-button color="primary" (click)="SelectedPoll(item._id)">สั่งข้าว</button>
+            <button ion-button color="primary" (click)="ClosePoll(item._id)">ปิดสั่งข้าว</button>
+            <button ion-button color="primary" (click)="DeletePoll(item)">ลบ</button>
+          </ion-card-content>
+        </ion-card>
   </ion-list>
 </ion-content>

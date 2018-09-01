@@ -4,7 +4,7 @@ import { NavController, NavParams } from 'ionic-angular';
 
 import { ItemDetailsPage } from '../item-details/item-details';
 import { HttpClient } from '@angular/common/http';
-import { ShopInfo, Configuration, ShopMenu } from '../../models/models';
+import { ShopInfo, Configuration, ShopMenu, PollInfo } from '../../models/models';
 
 @Component({
   selector: 'shop-detail',
@@ -15,22 +15,41 @@ export class ShopDetailPage {
   shopId: string;
   newMenuName: string;
   shopInfo: ShopInfo = new ShopInfo();
+  pollInfo: PollInfo;
 
   constructor(private http: HttpClient, public navCtrl: NavController, public navParams: NavParams) {
     this.shopId = navParams.get('shopId');
+    this.pollInfo = navParams.get('pollInfo');
   }
 
   ionViewDidEnter() {
-    this.http.get<ShopInfo>('https://foodpoll.azurewebsites.net/api/Foodpoll/GetShop/' + this.shopId + '/' + Configuration.currentUsername).subscribe(result => {
-      this.shopInfo = result;
+    if (this.pollInfo != null) {
+      this.shopInfo = this.pollInfo.shop;
+      this.setupDisplay();
+    }
+    else
+    {
+      this.http.get<ShopInfo>('https://foodpoll.azurewebsites.net/api/Foodpoll/GetShop/' + this.shopId + '/' + Configuration.currentUsername).subscribe(result => {
+        this.shopInfo = result;
+        this.setupDisplay();
+      }, error => console.error(error));
+    }
+  }
 
-      for (let entry of this.shopInfo.menus) {
-          if(this.shopInfo.defaultMenu._id == entry._id){
-            entry.selecteddefault = true;
-          }
+  setupDisplay(){
+    for (let entry of this.shopInfo.menus) {
+      if (this.shopInfo.defaultMenu._id == entry._id) {
+        entry.selecteddefault = true;
       }
+    }
 
-    }, error => console.error(error));
+    if(this.pollInfo!=null){
+      for (let entry of this.shopInfo.menus) {
+        if (this.shopInfo.defaultMenu._id == entry._id) {
+          entry.selecteddefault = true;
+        }
+      }
+    }
   }
 
   AddNewMenu() {
@@ -66,23 +85,23 @@ export class ShopDetailPage {
 
   changeDefault(item: ShopMenu) {
     for (let entry of this.shopInfo.menus) {
-        if(item != entry){
-          entry.selecteddefault = false;
-        }
+      if (item != entry) {
+        entry.selecteddefault = false;
+      }
     }
 
-    this.http.get('https://foodpoll.azurewebsites.net/api/Foodpoll/SetDefaulMenu/' + this.shopId+'/'+item._id).subscribe(result => {
+    this.http.get('https://foodpoll.azurewebsites.net/api/Foodpoll/SetDefaulMenu/' + this.shopId + '/' + item._id).subscribe(result => {
     }, error => console.error(error));
   }
 
   changeYourOrder(item: ShopMenu) {
     for (let entry of this.shopInfo.menus) {
-      if(item != entry){
+      if (item != entry) {
         entry.youselect = false;
       }
     }
 
-    this.http.get('https://foodpoll.azurewebsites.net/api/Foodpoll/SetDefaulMenu/' + this.shopId+'/'+item._id+'/'+Configuration.currentUsername).subscribe(result => {
+    this.http.get('https://foodpoll.azurewebsites.net/api/Foodpoll/SetDefaulMenu/' + this.shopId + '/' + item._id + '/' + Configuration.currentUsername).subscribe(result => {
     }, error => console.error(error));
   }
 }

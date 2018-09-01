@@ -42,8 +42,8 @@ export class TodayPage {
     popover.present();
   }
 
-  SelectedPoll(shopId: string) {
-    this.navCtrl.push(ShopDetailPage, { shopId: shopId });
+  SelectedPoll(shopId: string, pollInfo: PollInfo) {
+    this.navCtrl.push(ShopDetailPage, { shopId: shopId, pollInfo: pollInfo });
   }
 
   ClosePoll(pollId: string) {

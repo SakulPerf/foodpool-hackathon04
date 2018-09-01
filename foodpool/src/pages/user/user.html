@@ -21,7 +21,7 @@
       </ion-card-content>
     </ion-card>
   <ion-list>
-    <button ion-item *ngFor="let item of user">
+    <button ion-item *ngFor="let item of user" (click)="selectUser(item)">
       <ion-icon name="{{item.icon}}" item-left></ion-icon>
       {{item.name}}
       <div class="item-note" item-right (click)="DeleteUser(item)">
@@ -29,4 +29,17 @@
       </div>
     </button>
   </ion-list>
+
+  <ion-card *ngIf="selectedUser">
+      <ion-card-header>
+        แก้ไขข้อมูล
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label fixed>ชื่อผู้ใช้</ion-label>
+          <ion-input type="text" [(ngModel)]="selectedUser.name"></ion-input>
+        </ion-item>
+        <button ion-button round (click)="changeName()">แก้ไข</button>
+      </ion-card-content>
+    </ion-card>
 </ion-content>

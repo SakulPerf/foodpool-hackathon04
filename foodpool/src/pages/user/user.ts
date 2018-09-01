@@ -13,7 +13,7 @@ import { ShopDetailPage } from '../shop-detail/shop-detail';
   templateUrl: 'user.html'
 })
 export class UserPage {
-
+  selectedUser:UserInfo ;
   newUsername: string;
   user: UserInfo[] = [];
 
@@ -30,17 +30,28 @@ export class UserPage {
     var newUser = new UserInfo();
     newUser.name = this.newUsername;
     this.user.push(newUser);
-    this.http.get<UserInfo>('https://foodpoll.azurewebsites.net/api/Foodpoll/AddMember/'+this.newUsername).subscribe(result => {
+    this.http.get<UserInfo>('https://foodpoll.azurewebsites.net/api/Foodpoll/AddMember/' + this.newUsername).subscribe(result => {
       newUser._id = result._id;
     }, error => console.error(error));
   }
 
-  DeleteUser(selectedUser: UserInfo){
+  DeleteUser(selectedUser: UserInfo) {
     const index: number = this.user.indexOf(selectedUser);
     if (index !== -1) {
-        this.user.splice(index, 1);
-    }  
-    this.http.get('https://foodpoll.azurewebsites.net/api/Foodpoll/DeleteMember/'+selectedUser._id).subscribe(result => {
+      this.user.splice(index, 1);
+    }
+    this.http.get('https://foodpoll.azurewebsites.net/api/Foodpoll/DeleteMember/' + selectedUser._id).subscribe(result => {
+    }, error => console.error(error));
+  }
+
+  selectUser(item:UserInfo){
+    this.selectedUser = item;
+  }
+
+  changeName() {
+    if(this.selectedUser==null)return;
+    this.http.get('https://foodpoll.azurewebsites.net/api/Foodpoll/EditMember/' + this.selectedUser._id + '/' + this.selectedUser.name).subscribe(result => {
+      this.selectedUser = null;
     }, error => console.error(error));
   }
 }

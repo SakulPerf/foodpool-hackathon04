@@ -9,6 +9,7 @@ import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { CreatePollPage } from '../pages/create-poll/create-poll';
 
 import { TodayPage } from '../pages/today/today'
 import { ShopPage } from '../pages/shop/shop';
@@ -21,6 +22,7 @@ import { CreateShopPage } from '../pages/create-shop/create-shop';
     HelloIonicPage,
     ItemDetailsPage,
     ListPage,
+    CreatePollPage,
     TodayPage,
     ShopPage,
     ShopDetailPage,
